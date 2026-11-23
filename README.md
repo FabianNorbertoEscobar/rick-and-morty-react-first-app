@@ -1,76 +1,116 @@
-# Rick & Morty app
+# Rick & Morty - Práctica con React
 
-Deployed on Netlify at [https://rickandmortybyfescobar.netlify.app](https://rickandmortybyfescobar.netlify.app).
+Aplicación web desarrollada como práctica de React para consumir una API REST y mostrar información de personajes de Rick & Morty.
 
-Consuming API REST [Ricky & Morty API Rest](https://rickandmortyapi.com) endpoint [Characters](https://rickandmortyapi.com/api/character).
+## Demo
 
-## Getting Started with Create React App
+La versión publicada está disponible en:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**[https://rickandmortybyfescobar.netlify.app](https://rickandmortybyfescobar.netlify.app)**
 
-## Available Scripts
+## Funcionalidades
 
-In the project directory, you can run:
+- Pantalla de inicio con imagen ilustrativa y botón para iniciar la búsqueda.
+- Consulta de personajes a través de la **Rick and Morty API**.
+- Visualización de los personajes obtenidos en una cuadrícula responsive.
+- Presentación de nombre, imagen, estado, especie y cantidad de episodios de cada personaje.
+- Indicador visual del estado con colores verde (`Alive`) y rojo (`Dead`).
+- Navegación de vuelta a la pantalla de inicio mediante el enlace **Volver a la home**, disponible arriba y abajo del listado.
 
-### `npm start`
+## Stack tecnológico
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React 18** para la construcción de la interfaz basada en componentes.
+- **Create React App** como entorno de desarrollo y herramienta de compilación.
+- **JavaScript ES6+** y JSX.
+- **React Hooks**, especialmente `useState`, para manejar el estado de la vista y los personajes obtenidos.
+- **Fetch API** para realizar solicitudes HTTP a la API REST.
+- **CSS3** para los estilos, la cuadrícula de personajes y el diseño responsive.
+- **Testing Library** y **Jest** para pruebas de componentes.
+- **Netlify** para el despliegue de la aplicación.
+- **Rick and Morty API** como fuente de datos:
+  [https://rickandmortyapi.com/api/character](https://rickandmortyapi.com/api/character)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Cómo funciona
 
-### `npm test`
+El componente `App` mantiene el listado de personajes en su estado local:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Al cargar la aplicación se muestra la pantalla de inicio.
+2. Al presionar **Buscar Personajes**, `App` realiza una solicitud `fetch` al endpoint de personajes.
+3. La respuesta JSON se transforma y guarda en el estado mediante `setCharacters`.
+4. El componente `Characters` recibe la lista y genera una tarjeta por cada personaje.
+5. Al seleccionar **Volver a la home**, el estado vuelve a `null` y se muestra nuevamente la vista inicial.
 
-### `npm run build`
+## Estructura del proyecto
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```text
+rick-and-morty-react-first-app/
+├── public/
+│   ├── index.html
+│   ├── manifest.json
+│   └── favicon.ico
+├── src/
+│   ├── components/
+│   │   └── Characters.js
+│   ├── img/
+│   │   └── rick-morty.png
+│   ├── App.js
+│   ├── App.css
+│   ├── App.test.js
+│   ├── index.js
+│   ├── index.css
+│   ├── reportWebVitals.js
+│   └── setupTests.js
+├── package.json
+└── package-lock.json
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Componentes principales
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `App`: contiene el estado principal, realiza la consulta a la API y controla si se muestran la pantalla de inicio o los personajes.
+- `Characters`: recibe el listado, recorre los datos y muestra las tarjetas con la información de cada personaje.
+- `App.css` e `index.css`: definen la apariencia general, los estados visuales y la adaptación a dispositivos móviles.
 
-### `npm run eject`
+## Requisitos
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Node.js
+- npm
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Instalación y ejecución local
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Clonar el repositorio e instalar las dependencias:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm install
+```
 
-## Learn More
+Iniciar el servidor de desarrollo:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+La aplicación se abrirá en [http://localhost:3000](http://localhost:3000).
 
-### Code Splitting
+## Scripts disponibles
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+| Comando | Descripción |
+| --- | --- |
+| `npm start` | Ejecuta la aplicación en modo desarrollo. |
+| `npm test` | Ejecuta las pruebas en modo interactivo. |
+| `npm run build` | Genera la versión optimizada de producción en la carpeta `build`. |
+| `npm run eject` | Expone la configuración interna de Create React App. Es una operación irreversible. |
 
-### Analyzing the Bundle Size
+## Conceptos puestos en práctica
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Este repositorio forma parte de una práctica de desarrollo frontend y trabaja los siguientes conceptos:
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Creación de una aplicación con Create React App.
+- Organización de una interfaz en componentes.
+- Uso de props y estado con `useState`.
+- Consumo de APIs REST con `fetch`.
+- Renderizado condicional.
+- Iteración de datos con `map`.
+- Uso de claves en listas de React.
+- Manejo de imágenes y datos dinámicos.
+- Estilos responsive con CSS y media queries.
+- Preparación y despliegue de una aplicación React.
